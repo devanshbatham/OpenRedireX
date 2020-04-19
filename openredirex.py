@@ -97,7 +97,7 @@ def main():
     url_list = []
     # TODO: make a more extensive payload list (generate from domain: https://github.com/cujanovic/Open-Redirect-Payloads)
     if args.url:
-        if "FUZZ" not in args.url:
+        if args.keyword not in args.url:
             print("\u001b[31;1m[+] keyword \"FUZZ\" not found in the url !")
             return
         print(f"\u001b[32;1m[+] URL to be tested :\u001b[0m  \u001b[36;1m{args.url}\u001b[0m ")
