@@ -1,4 +1,4 @@
-## OpenRedireX : Open redirect Fuzzer for Humans 
+## OpenRedireX : Asynchronous Open redirect Fuzzer for Humans 
 ![enter image description here](https://raw.githubusercontent.com/devanshbatham/OpenRedireX/master/static/banner.PNG)
 
 ## Key Features : 
