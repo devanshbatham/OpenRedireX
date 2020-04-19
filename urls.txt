@@ -1,0 +1,6 @@
+http://vimeo.com/api/v2/video/82737766.json?callback=FUZZ
+https://vimeo.com/321607923?action=FUZZ
+http://vimeo.com:80/55301089/download?t=FUZZ
+http://vimeo.com/api/v2/video/376951018.json?callback=FUZZ
+https://vimeo.com/356044962?action=FUZZ
+https://vimeo.com/277930080?action=FUZZ
