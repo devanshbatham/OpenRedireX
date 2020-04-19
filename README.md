@@ -4,7 +4,7 @@
 ## Key Features : 
 
  - Takes a url or list of urls and fuzzes them for Open redirect issues 
- - You specify your own payloads in 'payloads.txt'
+ - You can specify your own payloads in 'payloads.txt'
  - Shows Location header history (if any)
  - Fast (as it is Asynchronous)
  - umm thats it , nothing much  ! 
