@@ -14,8 +14,6 @@
 ```
 $ git clone https://github.com/devanshbatham/OpenRedireX
 $ cd OpenRedireX
-$ python3 -m venv env
-$ source env/bin/activate
 Note : The "FUZZ" is important and the url must be in double qoutes ! 
 $ python3.7 openredirex.py -u "https://vulnerable.com/?url=FUZZ" -p payloads.txt --keyword FUZZ
 ```
