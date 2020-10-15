@@ -48,7 +48,7 @@ async def getResponse(session, url, payload, keyword):
             locations = f"{r_url}"
             if response.history:
                 for r in history:
-                    location = str(r).split("Location': \'")[1].split("\'")[0]
+                    location = r.headers['Location']
                     if history[-1] == r:
                         locations += f" --> {bcolors.OKGREEN}{location}{bcolors.ENDC} [{r.status}]"
                     else:
