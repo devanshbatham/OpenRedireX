@@ -10,22 +10,24 @@
  - umm thats it , nothing much  ! 
 
 ## Usage : 
-**Note : Use Python 3.7+ !** 
+**Note : Use Python 3.7+ !**
+**-o[--output]: is riquired to run**
 ```
 $ git clone https://github.com/devanshbatham/OpenRedireX
 $ cd OpenRedireX
+$ pip3 install -r requirements.txt
 Note : The "FUZZ" is important and the url must be in double qoutes ! 
-$ python3.7 openredirex.py -u "https://vulnerable.com/?url=FUZZ" -p payloads.txt --keyword FUZZ
+$ python3.7 openredirex.py -u "https://vulnerable.com/?url=FUZZ" -p payloads.txt --keyword FUZZ -o output.txt
 ```
 
 ### For single URL : 
 ```
-$ python3.7 openredirex.py -u "https://vulnerable.com/?url=FUZZ" -p payloads.txt --keyword FUZZ
+$ python3.7 openredirex.py -u "https://vulnerable.com/?url=FUZZ" -p payloads.txt --keyword FUZZ -o output.txt
 ```
 
 ### For List of URLs : 
 ```
-$ python3.7 openredirex.py -l urls.txt -p payloads.txt --keyword FUZZ
+$ python3.7 openredirex.py -l urls.txt -p payloads.txt --keyword FUZZ -o output.txt
 ```
 ## Example : 
 ![](https://raw.githubusercontent.com/devanshbatham/OpenRedireX/master/static/example.PNG)

@@ -21,7 +21,7 @@ class bcolors:
     ENDC = '\033[0m'
 #nono
 
-async def gen_tasks(session, urls, payloads, keyword):
+async def gen_tasks(session, urls, payloads, keyword, output):
     if not isinstance(urls , list):
         with open(urls) as u:
                 urls = u.read().splitlines()
@@ -34,12 +34,12 @@ async def gen_tasks(session, urls, payloads, keyword):
     tasks = []
     for url in urls:
         for payload in payloads:
-            task = asyncio.ensure_future(getResponse(session, url, payload, keyword))
+            task = asyncio.ensure_future(getResponse(session, url, payload, keyword, output))
             tasks.append(task)
     results = await asyncio.gather(*tasks)
     return results
 
-async def getResponse(session, url, payload, keyword):
+async def getResponse(session, url, payload, keyword, output):
 
     r_url = url.replace(keyword, payload)
     try:
@@ -48,12 +48,16 @@ async def getResponse(session, url, payload, keyword):
             locations = f"{r_url}"
             if response.history:
                 for r in history:
-                    location = str(r).split("Location': \'")[1].split("\'")[0]
+                    location = r.headers['Location']
                     if history[-1] == r:
                         locations += f" --> {bcolors.OKGREEN}{location}{bcolors.ENDC} [{r.status}]"
                     else:
                         locations += f" --> {location} [{r.status}]" 
                 print(locations)
+                text_file = open(output, "a")
+                text_file.write(""+locations+"\n")
+                text_file.close()
+                
             else:
                 pass
     except ClientConnectorError:
@@ -75,9 +79,9 @@ async def getResponse(session, url, payload, keyword):
     except AssertionError:
         pass
 
-async def redirme(url_list, payload_list, keyword):
+async def redirme(url_list, payload_list, keyword, output):
     async with aiohttp.ClientSession() as session:
-        await gen_tasks(session, url_list, payload_list, keyword)
+        await gen_tasks(session, url_list, payload_list, keyword, output)
 
 def main():
 
@@ -86,7 +90,9 @@ def main():
     parser.add_argument('-l', '--list', help='file of urls with parameters to test')
     parser.add_argument('-p', '--payloads', help='file of payloads')
     parser.add_argument('-k', '--keyword', help='keyword in urls to replace with payload (default is FUZZ)', default="FUZZ")
+    parser.add_argument('-o', '--output', required=True, help='Optional for output')
     args = parser.parse_args()
+    output = args.output
 
     if os.name=="nt" and sys.version_info[:2] == (3, 8):
         # https://github.com/aio-libs/aiohttp/issues/4324
@@ -103,9 +109,9 @@ def main():
             return
         print(f"\u001b[32;1m[+] URL to be tested :\u001b[0m  \u001b[36;1m{args.url}\u001b[0m ")
         url_list.append(args.url)
-        asyncio.run(redirme(url_list , args.payloads, args.keyword))
+        asyncio.run(redirme(url_list , args.payloads, args.keyword, args.output))
     elif args.list:
-        asyncio.run(redirme(args.list, args.payloads, args.keyword))
+        asyncio.run(redirme(args.list, args.payloads, args.keyword, args.output))
 
 if __name__ == "__main__":
     if os.name =="nt":
