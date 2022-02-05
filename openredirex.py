@@ -27,9 +27,9 @@ async def gen_tasks(session, urls, payloads, keyword, output):
                 urls = u.read().splitlines()
     with open(payloads) as p:
         payloads = p.read().splitlines()
-    print(f"\u001b[32;1m[+] Total URLs loaded : {len(urls)}")
-    print(f"[+] Total Payloads loaded : {len(payloads)}")
-    print(f"[+] Scanning Started [Only Suspected URLs with redirect history will be displayed , all others will be ignored]\u001b[0m\n")
+    #print(f"\u001b[32;1m[+] Total URLs loaded : {len(urls)}")
+    #print(f"[+] Total Payloads loaded : {len(payloads)}")
+    #print(f"[+] Scanning Started [Only Suspected URLs with redirect history will be displayed , all others will be ignored]\u001b[0m\n")
 
     tasks = []
     for url in urls:
@@ -128,6 +128,6 @@ if __name__ == "__main__":
                           \u001b[32;1m- By Devansh(Asm0d3us) and NullPxl\u001b[0m
 
     """
-    print(banner)
+    #print(banner)
     main()
-    print("\n \u001b[31m [!] Total execution time                 : %ss\u001b[0m" % str((time.time() - start_time))[:-12])
+    #print("\n \u001b[31m [!] Total execution time                 : %ss\u001b[0m" % str((time.time() - start_time))[:-12])
