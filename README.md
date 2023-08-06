@@ -57,7 +57,7 @@ https://auth.example.com/auth/realms/sonatype/protocol/openid-connect/logout?red
 https://exmaple.com/php?test=baz&foo=bar
 ```
 
-This example reads URLs from the file `list_of_urls.txt`, replaces all the values of the parameters to "FUZZ" (if --keyword is not supplied), then again replaces the keyword `FUZZ` or the supplied keyword with each payload from `payloads.txt`, and fetches each URL concurrently, with a maximum of 50 concurrent tasks.
+This example reads URLs from the file `list_of_urls.txt`, replaces all the values of the parameters to `FUZZ` (if `--keyword` is not supplied), then again replaces the keyword `FUZZ` or the supplied keyword with each payload from `payloads.txt`, and fetches each URL concurrently, with a maximum of 50 concurrent tasks.
 
 
 
