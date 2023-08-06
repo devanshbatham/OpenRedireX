@@ -44,7 +44,21 @@ Example usage:
 cat list_of_urls.txt |  openredirex -p payloads.txt -k "FUZZ" -c 50
 ```
 
-This example reads URLs from the file `list_of_urls.txt`, replaces the keyword `FUZZ`` with each payload from `payloads.txt`, and fetches each URL concurrently, with a maximum of 50 concurrent tasks.
+
+List of URLs should look like below:
+
+
+```
+cat list_of_urls.txt
+
+https://newsroom.example.com/logout?redirect=FUZZ
+https://auth.example.com/auth/realms/sonatype/protocol/openid-connect/logout?redirect_uri=test
+https://exmaple.com/php?test=baz&foo=bar
+```
+
+This example reads URLs from the file `list_of_urls.txt`, replaces all the values of the parameters to "FUZZ" (if --keyword is not supplied), then again replaces the keyword `FUZZ` or the supplied keyword with each payload from `payloads.txt`, and fetches each URL concurrently, with a maximum of 50 concurrent tasks.
+
+
 
 # Dependencies
 
