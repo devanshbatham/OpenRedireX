@@ -14,7 +14,7 @@
   <br>
 </p>
 
-![OpenRedirex](https://raw.githubusercontent.com/devanshbatham/OpenRedireX/master/static/openredirex.png)
+![OpenRedirex](https://github.com/devanshbatham/OpenRedireX/blob/master/static/openredirex.png?raw=true)
 
 # Install
 
