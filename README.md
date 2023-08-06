@@ -1,35 +1,65 @@
-## OpenRedireX : Asynchronous Open redirect Fuzzer for Humans 
-![enter image description here](https://raw.githubusercontent.com/devanshbatham/OpenRedireX/master/static/banner.PNG)
 
-## Key Features : 
+<h1 align="center">
+    OpenRedireX
+  <br>
+</h1>
 
- - Takes a url or list of urls and fuzzes them for Open redirect issues 
- - You can specify your own payloads in 'payloads.txt'
- - Shows Location header history (if any)
- - Fast (as it is Asynchronous)
- - umm thats it , nothing much  ! 
+<h4 align="center">A fuzzer for detecting open redirect vulnerabilities</h4>
 
-## Usage : 
-**Note : Use Python 3.7+ !** 
+
+<p align="center">
+  <a href="#install">🏗️ Install</a>  
+  <a href="#usage">⛏️ Usage</a>  
+  <a href="#dependencies">📚 Dependencies</a>
+  <br>
+</p>
+
+
+# Install
+
+```sh
+git clone https://github.com/devanshbatham/openredirex
+cd openredirex
+sudo chmod +x setup.sh
+./setup.sh
 ```
-$ git clone https://github.com/devanshbatham/OpenRedireX
-$ cd OpenRedireX
-Note : The "FUZZ" is important and the url must be in double qoutes ! 
-$ python3.7 openredirex.py -u "https://vulnerable.com/?url=FUZZ" -p payloads.txt --keyword FUZZ
+
+# Usage
+
+The script is executed from the command line and has the following usage options:
+
+```sh
+openredirex [-p payloads] [-k keyword] [-c concurrency]
 ```
 
-### For single URL : 
-```
-$ python3.7 openredirex.py -u "https://vulnerable.com/?url=FUZZ" -p payloads.txt --keyword FUZZ
+- `-p`, `--payloads`: File containing a list of payloads. If not specified, a hardcoded list is used.
+- `-k`, `--keyword`: Keyword in URLs to replace with payload. Default is "FUZZ".
+- `-c`, `--concurrency`: Number of concurrent tasks. Default is 100.
+
+The script expects a list of URLs as input. Each URL should contain the keyword specified by the `-k` option. The script replaces the keyword with each of the payloads, and attempts to fetch the modified URL. 
+
+Example usage:
+
+```sh
+cat list_of_urls.txt |  openredirex -p payloads.txt -k "FUZZ" -c 50
 ```
 
-### For List of URLs : 
-```
-$ python3.7 openredirex.py -l urls.txt -p payloads.txt --keyword FUZZ
-```
-## Example : 
-![](https://raw.githubusercontent.com/devanshbatham/OpenRedireX/master/static/example.PNG)
-### Credits : 
-Thanks mate [@NullPxl](https://twitter.com/NullPxl)
+This example reads URLs from the file `list_of_urls.txt`, replaces the keyword `FUZZ`` with each payload from `payloads.txt`, and fetches each URL concurrently, with a maximum of 50 concurrent tasks.
 
+# Dependencies
 
+The script uses the following libraries:
+
+- `argparse` for handling command-line arguments.
+- `aiohttp` for making HTTP requests.
+- `tqdm` for displaying progress.
+- `concurrent.futures` for handling concurrent tasks.
+- `asyncio` for managing asynchronous tasks.
+
+You need to install these dependencies before running the script. Most of them are part of the standard Python library. You can install `aiohttp` and `tqdm` using pip:
+
+```sh
+pip install aiohttp tqdm
+```
+
+You can use this script to check for open redirects in web applications. However, you should only use it on systems that you have been given explicit permission to test. Unauthorized scanning can be illegal.
